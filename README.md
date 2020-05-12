@@ -4,7 +4,7 @@ Changes your wallpaper to a specified one. Built with love in Golang.
 
 ##External package(s)
 - go-waller
-    - run "go get -v github.com/gabielfemi/go-waller"
+    - run go get -v github.com/gabielfemi/go-waller
     
 ##Usage
 - git clone https://github.com/gabielfemi/go-waller
@@ -14,7 +14,9 @@ Changes your wallpaper to a specified one. Built with love in Golang.
 - run ``go run main.go`` then see your background changed. 
 
 
-Extra: You can build an executable file with ``go build main.go``
+Extra: 
+- You can build an executable file with ``go build main.go``
+- You can edit the time transition by changing ``time.Sleep()``
 
 Thanks for reading :)
 
