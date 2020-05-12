@@ -1,6 +1,6 @@
 # go-waller
 Changes your wallpaper to a specified one. Built with love in Golang.
-
+![alt text](Gowaller.jpg)
 
 ##External package(s)
 - go-waller
