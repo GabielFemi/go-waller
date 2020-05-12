@@ -14,7 +14,9 @@ Changes your wallpaper to a specified one. Built with love in Golang.
 - run ``go run main.go`` then see your background changed. 
 
 
-Extra: You can build an executable file with ``go build main.go``
+Extra: 
+- You can build an executable file with ``go build main.go``
+- You can edit the time transition by changing ``time.Sleep()``
 
 Thanks for reading :)
 
