@@ -6,6 +6,8 @@ import (
 	"syscall"
 	_ "syscall"
 	"unsafe"
+
+	"github.com/gabielfemi/go-filer"
 )
 
 const (
@@ -22,17 +24,24 @@ var (
 	systemParametersInfoW  = user32.NewProc("SystemParametersInfoW")
 )
 func SetWallPaper(filePath string) error{
-	fileNameUTF16Ptr,  err := syscall.UTF16PtrFromString(filePath)
-	if err != nil {
-		return err
+	fileExists := go_filer.FileExists(filePath)
+
+	if !fileExists {
+		go_filer.LogDoesNotExist()
+	}else {
+		fileNameUTF16Ptr,  err := syscall.UTF16PtrFromString(filePath)
+		if err != nil {
+			return err
+		}
+		_, _, _ = systemParametersInfoW.Call(
+			uintptr(spiSetDesktopWallPaper),
+			uintptr(uiParam),
+			uintptr(unsafe.Pointer(fileNameUTF16Ptr)),
+			uintptr(pifUpdateINIFile|spfSendChange),
+		)
+		fmt.Println("Your wallpaper is now set.")
 	}
-	_, _, _ = systemParametersInfoW.Call(
-		uintptr(spiSetDesktopWallPaper),
-		uintptr(uiParam),
-		uintptr(unsafe.Pointer(fileNameUTF16Ptr)),
-		uintptr(pifUpdateINIFile|spfSendChange),
-	)
-	fmt.Println("Your wallpaper is now set.")
+
 	return nil
 }
 
